@@ -5,7 +5,7 @@ const fs = require("fs");
 const port = 3000;
 
 const { GoogleGenerativeAI } = require("@google/generative-ai");
-const genAI = new GoogleGenerativeAI("AIzaSyAlWi2dnBTprQP39_pqCiROeXj9ntMpFug");
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 async function run() {
   const model = genAI.getGenerativeModel({ model: "gemini-pro" });
@@ -29,7 +29,7 @@ app.set("view engine", "ejs");
 
 app.get('', (req,res) => {
     res.render('index')
-    run();
+    // run();
 })
 
 app.listen(port, () => {
