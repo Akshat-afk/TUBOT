@@ -1,0 +1,69 @@
+body{
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  color:#602e00;
+}
+
+.flip-card {
+  width: max;
+  height: 40vh;
+  perspective: 1000px; 
+}
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+.flip-card-back {
+  background-color: dodgerblue;
+  color: white;
+  transform: rotateY(180deg);
+}
+.parallax {
+  background-image: url(https://images.unsplash.com/photo-1593062096033-9a26b09da705?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  height: inherit;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+footer .nav-link{
+  color:#602e00;
+}
+footer .nav-link:hover {
+  color: red;
+  text-decoration: underline; 
+}
+
+.input-style {
+  resize:none;
+  height: 60vh;
+  color:#602e00;
+  background-color: #f2e7d6;
+  font-size: 20px;
+}
+
+.btn:hover {
+  background-color: #faf3e8;
+  color: #602e00;
+}
