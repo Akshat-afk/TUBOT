@@ -5,7 +5,7 @@ const path = require("path");
 const port = 3000;
 
 const { GoogleGenerativeAI } = require("@google/generative-ai");
-const genAI = new GoogleGenerativeAI("AIzaSyAlWi2dnBTprQP39_pqCiROeXj9ntMpFug");
+const genAI = new GoogleGenerativeAI("AIzaSyAlWi2dnBTprQP39_pqCiROeXj9ntMpFug"); //TODO: hide the key pls
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
@@ -103,6 +103,53 @@ app.post("/notes", async (req, res) => {
   // Render the EJS template with message and response
   res.render("notespage", { message: userMessage, response, chat: chat });
 });
+
+app.get("/flashcardgen", async (req, res) => {
+  let userMessage = req.body.source; // Get user message from query string
+  let response = "";
+
+  if (userMessage) {
+    // Check if chat object exists from previous request (for ongoing chat)
+    if (!chat) {
+      chat = await initializeChat_flashcard(); // Initialize chat if not already done
+    }
+    const result = await chat.sendMessage(userMessage);
+
+    const responseText = await result.response.text();
+    response = JSON.parse(responseText);
+  } else {
+    // Initialize chat for the first user message
+    chat = await initializeChat_flashcard();
+  }
+  
+  // Render the EJS template with message and response
+  res.render("flashcardpage", { message: userMessage, response, chat: chat });
+});
+app.post("/flashcardgen", async (req, res) => {
+  let userMessage = req.body.source; // Get user message from query string
+  let response = "";
+
+  if (userMessage) {
+    // Check if chat object exists from previous request (for ongoing chat)
+    if (!chat) {
+      chat = await initializeChat_flashcard(); // Initialize chat if not already done
+    }
+    const result = await chat.sendMessage(userMessage);
+
+    const responseText = await result.response.text();
+    response = JSON.parse(responseText);
+  } else {
+    // Initialize chat for the first user message
+    chat = await initializeChat_flashcard();
+  }
+  // Render the EJS template with message and response
+  res.render("flashcardpage", {
+    message: userMessage,
+    response,
+    chat: chat,
+  });
+});
+
 async function initializeChat() {
   const model = genAI.getGenerativeModel({ model: "gemini-pro" });
   return model.startChat({
@@ -142,7 +189,30 @@ async function initializeChat_planner() {
         role: "model",
         parts: [
           {
-            text: "I understand"
+            text: "I understand",
+          },
+        ],
+      },
+    ],
+  });
+}
+async function initializeChat_flashcard() {
+  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+  return model.startChat({
+    history: [
+      {
+        role: "user",
+        parts: [
+          {
+            text: 'This will be your persona you are a AI TUTOR named TUBOT and you will help the user to make 10 flashcards on the basis of the given source material\nYou will only provide the flashcards and no extra output\nthe format for the output is as follows:\n[{"front_text": "","back_text": "" }]',
+          },
+        ],
+      },
+      {
+        role: "model",
+        parts: [
+          {
+            text: "I understand",
           },
         ],
       },
