@@ -11,7 +11,6 @@ TUBOT is a personalised AI tutor which can create quizzes, planners, notes all i
 - [Usage](#usage)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Overview
 
