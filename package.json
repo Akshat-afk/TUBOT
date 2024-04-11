@@ -9,10 +9,10 @@
   "name": "tubot",
   "description": "TUBOT is a personalised AI tutor which can create quizzes, planners, notes all in one place using AI.",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "node app.js"
   },
   "author": "akshat_afk",
   "license": "ISC"
