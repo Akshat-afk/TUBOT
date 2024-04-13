@@ -1,46 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Study Planner</title>
-    <link rel="stylesheet" href="css/custom.css"/>
-    <link rel="stylesheet" href="css/ani.css"/>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-  </head>
-  <body class="bg-light">
-    <nav class="navbar shadow-sm">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="homepage.html">
-          <img
-            src="images\robot-svgrepo-com.svg"
-            alt="Logo"
-            width="40"
-            class="d-inline-block align-text-top"
-          />
-          TUBOT
-        </a>
-        <button type="button" class="btn btn-primary">LOGIN</button>
-      </div>
-    </nav>
-    <div class="container-fluid p-3 bg-light text-primary">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Study Planner</title>
+  <link rel="stylesheet" href="css/custom.css" />
+  <link rel="stylesheet" href="css/ani.css" />
+  <script src="js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+  <div class="cursor-dot" data-cursor-dot></div>
+  <div class="cursor-outline" data-cursor-outline></div>
+  <%- include('./navbar') %>
+
+    <div class="container-fluid p-3">
       <div class="row">
         <div class="container-fluid col-4 p-5">
           <form action="/studyplanner" method="POST">
             <div class="form-group">
-              <div class="display-6" for="source">
-                Enter Your Syllabus:
-              </div>
-              <textarea
-                class="form-control input-style shadow"
-                id="source"
-                name="source"
-                rows="5"
-              ></textarea>
+              <h3 for="source">
+                <b>Syllabus:</b>
+              </h3>
+              <textarea class="form-control input-style shadow" style="height: 30vh;" id="source" name="source"
+                rows="5"></textarea>
             </div>
-            <div class="display-6" for="dates">Enter the time period<br>(eg: 01-02-2024 to 29-02-2024):</div>
-            <textarea class="form-control input-style shadow" rows="5" id="dates" name="dates"></textarea>
+            <h3 for="dates"><b>Time Period</b></h3>
+            <textarea class="form-control input-style shadow" style="height: 30vh;" rows="5" id="dates"
+              name="dates"></textarea>
 
             <button class="btn btn-primary m-3" type="submit" id="sendButton">
               Submit
@@ -49,53 +38,23 @@
         </div>
         <div class="container-fluid col p-5">
           <div class="form-group">
-            <div class="display-6">Your Planner:</div>
-            <textarea class="form-control input-style shadow" id="planner" rows="5" readonly><%= response  %></textarea>
+            <h3><b>Your Planner:</b></h3>
+            <textarea class="form-control input-style shadow" style="height: 68vh;" id="planner" name="planner" rows="5"
+              readonly><%= response  %></textarea>
+            <button class="btn m-3" id="copy" onclick="copy()">
+              Copy
+            </button>
           </div>
         </div>
       </div>
-      <footer
-        class="d-flex flex-wrap justify-content-between align-items-center py-1 border-top"
-      >
-        <p class="col-md-4 mb-0">© 2024 TUBOT, Inc</p>
-
-        <a
-          href="#"
-          class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"
-        >
-          <img
-            src="images\robot-svgrepo-com.svg"
-            alt="Logo"
-            width="50"
-            class="d-inline-block align-text-top"
-          />
-        </a>
-
-        <ul class="nav col-md-4 justify-content-end">
-          <li class="nav-item">
-            <a href="#" class="nav-link px-2">Home</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link px-2">Features</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link px-2">Pricing</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link px-2">FAQs</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link px-2">About</a>
-          </li>
-        </ul>
-      </footer>
+      <%- include('./footer') %>
     </div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-    <script src="js/client-side-planner.js"></script>
-  </body>
+      crossorigin="anonymous"></script>
+    <script src="js/index.js"></script>
+
+</body>
+
 </html>

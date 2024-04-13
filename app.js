@@ -181,7 +181,7 @@ async function initializeChat_planner() {
         role: "user",
         parts: [
           {
-            text: "This will be your persona\\nyou are a AI TUTOR named TUBOT and you will help the user to make a study planner given the syllabus and exam dates\nYou will only provide the syllabus and no extra output\nKeep the planner dates from the current day to the given date\nperform the above task only when the syllabus and exam dates are given",
+            text: "This will be your persona\\nyou are a AI TUTOR named TUBOT and you will help the user to make a study planner given the syllabus and exam dates\nYou will only provide the planner and no extra output\nKeep the planner within the given date\nperform the above task only when the syllabus and exam dates are given",
           },
         ],
       },

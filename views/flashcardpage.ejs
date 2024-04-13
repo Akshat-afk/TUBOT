@@ -2,136 +2,96 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Flashcard Generator</title>
-    <link rel="stylesheet" href="css/custom.css" />
-    <link rel="stylesheet" href="css/ani.css" />
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Flashcard Generator</title>
+	<link rel="stylesheet" href="css/custom.css" />
+	<link rel="stylesheet" href="css/ani.css" />
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
 </head>
 
-<body class="bg-light">
-    <nav class="navbar shadow-sm">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="homepage.html">
-                <img src="images\robot-svgrepo-com.svg" alt="Logo" width="40" class="d-inline-block align-text-top" />
-                TUBOT
-            </a>
-            <button type="button" class="btn btn-primary">LOGIN</button>
-        </div>
-    </nav>
+<body>
+	<%- include('./navbar') %>
 
-    <div class="container-fluid" style="height: 100vh">
-        <form action="/flashcardgen" method="POST">
-            <div class="form-group">
-                <div class="display-6" for="source">
-                    Enter Your Source Material:
-                </div>
-                <textarea class="form-control input-style shadow" id="source" name="source" rows="5"></textarea>
-            </div>
-            <button class="btn btn-primary m-3" type="submit" id="sendButton">
-                Make Flashcards
-            </button>
-        </form>
-    </div>
+		<div class="container-fluid" style="height: 80vh">
+			<form action="/flashcardgen" method="POST">
+				<div class="form-group">
+					<div class="display-6" for="source">
+						Enter Your Source Material:
+					</div>
+					<textarea class="form-control input-style shadow" id="source" name="source" rows="5"></textarea>
+				</div>
+				<button class="btn btn-primary m-3" type="submit" id="sendButton">
+					Make Flashcards
+				</button>
+			</form>
+		</div>
 
-    <div class="container" style="height:100vh">
-        <div id="flashcards" class="carousel slide p-5" data-interval="false">
-            <div class="container">
-                <div id="carousel-inner" class="carousel-inner">
-                    <div class="carousel-item active" style="height:500px;">
-                        <div class="flashcard bg-secondary text-light">
-                            <h2>Your Flashcards</h2>
-                        </div>
-                    </div>
-                    <% if (response.length> 0) { %>
-                        <% response.forEach(function(flashcard) { %>
-                            <div class="carousel-item" style="height:500px;">
-                                <div class="flashcard bg-secondary text-light p-5">
-                                    <ul>
-                                        <li><%- flashcard.front_text %><br></li>
-                                        <li class="back-text hidden"><%- flashcard.back_text %></li>
-                                        <li>
-                                            <button class="reveal-button">Reveal Answer</button>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+		<div class="container" style="height:100vh">
+			<div id="flashcards" class="carousel slide p-5" data-interval="false">
+				<div class="container">
+					<div id="carousel-inner" class="carousel-inner">
+						<div class="carousel-item active">
+							<div class="flashcard p-5">
+								<h2 style="text-align: center;">Your Flashcards</h2>
+							</div>
+						</div>
+						<% if (response.length> 0) { %>
+							<% response.forEach(function(flashcard) { %>
+								<div class="carousel-item">
+									<div class="flashcard p-5">
+										<h4>Question<br><%- flashcard.front_text %><br></h4>
+										<h4 class="back-text hidden">Answer<br><%- flashcard.back_text %></h4>
+										<button class="btn reveal-button">Reveal Answer</button>
+									</div>
+								</div>
 
-                            <% }) %>
+								<% }) %>
+									<% }%>
+					</div>
+					<a class="carousel-control-prev" href="#flashcards" role="button" data-slide="prev">
+						<img src="images\previous-svgrepo-com.svg" style="height: 30px;">
+					</a>
+					<a class="carousel-control-next" href="#flashcards" role="button" data-slide="next">
+						<img src="images\next-svgrepo-com.svg" style="height: 30px;">
+					</a>
 
-                                <% } else { %>
-                                    <p>No flashcards available.</p>
-                                    <% } %>
-                </div>
-            </div>
-
-            <a class="carousel-control-prev" href="#flashcards" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#flashcards" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    </div>
+				</div>
 
 
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-1 border-top">
-        <p class="col-md-4 mb-0">© 2024 TUBOT, Inc</p>
+			</div>
+		</div>
 
-        <a href="#"
-            class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-            <img src="images\robot-svgrepo-com.svg" alt="Logo" width="50" class="d-inline-block align-text-top" />
-        </a>
 
-        <ul class="nav col-md-4 justify-content-end">
-            <li class="nav-item">
-                <a href="#" class="nav-link px-2">Home</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link px-2">Features</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link px-2">Pricing</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link px-2">FAQs</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link px-2">About</a>
-            </li>
-        </ul>
-    </footer>
-    </div>
-    <script>
-        const revealButtons = document.querySelectorAll('.carousel-item .reveal-button');
+		<%- include('./footer') %>
 
-        revealButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                // Get the closest flashcard element (parent's parent)
-                const flashcard = this.closest('.flashcard');
+			</div>
+			<script>
+				const revealButtons = document.querySelectorAll('.carousel-item .reveal-button');
 
-                // Toggle the hidden class on the back text element
-                flashcard.querySelector('.back-text').classList.toggle('hidden');
+				revealButtons.forEach(button => {
+					button.addEventListener('click', function () {
+						// Get the closest flashcard element (parent's parent)
+						const flashcard = this.closest('.flashcard');
+						flashcard.querySelector('.back-text').classList.toggle('hidden');
 
-                if (this.textContent === 'Reveal Answer') {
-                  this.textContent = 'Hide Answer';
-                } else {
-                  this.textContent = 'Reveal Answer';
-                }
-            });
-        });
-    </script>
+						if (this.textContent === 'Reveal Answer') {
+							this.textContent = 'Hide Answer';
+						} else {
+							this.textContent = 'Reveal Answer';
+						}
+					});
+				});
+			</script>
+			<script src="js/index.js"></script>
 </body>
 
 </html>
