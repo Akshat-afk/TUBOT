@@ -8,14 +8,10 @@
   <link rel="stylesheet" href="css/custom.css" />
   <link rel="stylesheet" href="css/ani.css" />
   <script src="js/bootstrap.min.js"></script>
-
 </head>
 
 <body>
-  <div class="cursor-dot" data-cursor-dot></div>
-  <div class="cursor-outline" data-cursor-outline></div>
   <%- include('./navbar') %>
-
     <div class="container-fluid p-3">
       <div class="row">
         <div class="container-fluid col-4 p-5">
@@ -24,13 +20,12 @@
               <h3 for="source">
                 <b>Syllabus:</b>
               </h3>
-              <textarea class="form-control input-style shadow" style="height: 30vh;" id="source" name="source"
+              <textarea class="form-control input-style shadow" style="height: 45vh;" id="source" name="source"
                 rows="5"></textarea>
+              <h3 for="dates"><b>Time Period</b></h3>
+              <textarea class="form-control input-style shadow" style="height: 15vh;" rows="5" id="dates"
+                name="dates"></textarea>
             </div>
-            <h3 for="dates"><b>Time Period</b></h3>
-            <textarea class="form-control input-style shadow" style="height: 30vh;" rows="5" id="dates"
-              name="dates"></textarea>
-
             <button class="btn btn-primary m-3" type="submit" id="sendButton">
               Submit
             </button>
@@ -41,7 +36,7 @@
             <h3><b>Your Planner:</b></h3>
             <textarea class="form-control input-style shadow" style="height: 68vh;" id="planner" name="planner" rows="5"
               readonly><%= response  %></textarea>
-            <button class="btn m-3" id="copy" onclick="copy()">
+            <button class="btn m-3" id="copy" onclick="planner_copy()">
               Copy
             </button>
           </div>
@@ -53,8 +48,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"></script>
-    <script src="js/index.js"></script>
+  <script src="js/index.js"></script>
 
 </body>
-
 </html>

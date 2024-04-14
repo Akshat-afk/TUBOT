@@ -21,59 +21,64 @@
 <body>
 	<%- include('./navbar') %>
 
-		<div class="container-fluid" style="height: 80vh">
-			<form action="/flashcardgen" method="POST">
-				<div class="form-group">
-					<div class="display-6" for="source">
-						Enter Your Source Material:
+		<div class="row">
+			<div class="container-fluid p-5 " style="height: 80vh">
+				<form action="/flashcardgen" method="POST">
+					<div class="form-group p-2">
+						<h3 class="p-3" for="source">
+							<b>Enter Your Source Material:</b>
+						</h3>
+						<textarea class="form-control input-style shadow" id="source" name="source" rows="5"></textarea>
 					</div>
-					<textarea class="form-control input-style shadow" id="source" name="source" rows="5"></textarea>
-				</div>
-				<button class="btn btn-primary m-3" type="submit" id="sendButton">
-					Make Flashcards
-				</button>
-			</form>
-		</div>
-
-		<div class="container" style="height:100vh">
-			<div id="flashcards" class="carousel slide p-5" data-interval="false">
-				<div class="container">
-					<div id="carousel-inner" class="carousel-inner">
-						<div class="carousel-item active">
-							<div class="flashcard p-5">
-								<h2 style="text-align: center;">Your Flashcards</h2>
-							</div>
+					<div class="row">
+						<div class="col"> <button class="btn m-3" type="submit" id="sendButton">
+								Make Flashcards
+							</button></div>
+						<div class="col-8">
+							<h4 class="m-3"><b>Scroll down after generating your Flashcards</b></h4>
 						</div>
-						<% if (response.length> 0) { %>
-							<% response.forEach(function(flashcard) { %>
-								<div class="carousel-item">
-									<div class="flashcard p-5">
-										<h4>Question<br><%- flashcard.front_text %><br></h4>
-										<h4 class="back-text hidden">Answer<br><%- flashcard.back_text %></h4>
-										<button class="btn reveal-button">Reveal Answer</button>
-									</div>
-								</div>
-
-								<% }) %>
-									<% }%>
 					</div>
-					<a class="carousel-control-prev" href="#flashcards" role="button" data-slide="prev">
-						<img src="images\previous-svgrepo-com.svg" style="height: 30px;">
-					</a>
-					<a class="carousel-control-next" href="#flashcards" role="button" data-slide="next">
-						<img src="images\next-svgrepo-com.svg" style="height: 30px;">
-					</a>
+				</form>
+			</div>
+
+			<div class="container p-5" style="height:80vh">
+				<div id="flashcards" class="carousel slide p-5" data-interval="false">
+					<div class="container">
+						<div id="carousel-inner" class="carousel-inner">
+							<div class="carousel-item active">
+								<div class="flashcard p-5">
+									<h2 style="text-align: center;">Your Flashcards</h2>
+								</div>
+							</div>
+							<% if (response.length> 0) { %>
+								<% response.forEach(function(flashcard) { %>
+									<div class="carousel-item">
+										<div class="flashcard p-5">
+											<h4>Question<br><%- flashcard.front_text %><br></h4>
+											<h4 class="back-text hidden">Answer<br><%- flashcard.back_text %></h4>
+											<button class="btn reveal-button">Reveal Answer</button>
+										</div>
+									</div>
+
+									<% }) %>
+										<% }%>
+						</div>
+						<a class="carousel-control-prev" href="#flashcards" role="button" data-slide="prev">
+							<img src="images\previous-svgrepo-com.svg" style="height: 30px;">
+						</a>
+						<a class="carousel-control-next" href="#flashcards" role="button" data-slide="next">
+							<img src="images\next-svgrepo-com.svg" style="height: 30px;">
+						</a>
+
+					</div>
+
 
 				</div>
-
-
 			</div>
 		</div>
-
 
 		<%- include('./footer') %>
 
-			</div>
 			<script>
 				const revealButtons = document.querySelectorAll('.carousel-item .reveal-button');
 
