@@ -219,9 +219,6 @@ async function initializeChat_flashcard() {
     ],
   });
 }
-app.get("/test", async (req, res) => {
-  res.render("tester");
-});
 
 app.listen(port, () => {
   console.log(`http://localhost:${port}`);
