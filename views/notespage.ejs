@@ -11,9 +11,12 @@
   <script src="js/index.js"></script>
 </head>
 
-<body>
+
+<body onload="myFunction()" style="margin:0;">
+  <div id="loader"></div>
+
   <%- include('./navbar') %>
-    <div class="container-fluid p-3">
+    <div class="container-fluid p-3" id="myDiv">
       <div class="row">
         <div class="container-fluid col-5 p-5">
           <form action="/notes" method="POST">
@@ -23,7 +26,7 @@
               </h3>
               <textarea class="form-control input-style shadow" id="source" name="source" rows="5"></textarea>
             </div>
-            <button class="btn m-3" type="submit" id="sendButton">
+            <button class="btn m-3" type="submit" id="sendButton" onclick="startLoader()">
               Submit
             </button>
           </form>
@@ -45,4 +48,5 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"></script>
 </body>
+
 </html>

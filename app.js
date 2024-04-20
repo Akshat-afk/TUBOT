@@ -158,7 +158,7 @@ async function initializeChat() {
         role: "user",
         parts: [
           {
-            text: "This will be your persona\nyou are a AI TUTOR named TUBOT and you will help the user to solve their doubdts",
+            text: "This will be your persona\nyou are a AI TUTOR named TUBOT and you will help the user to solve their doubts",
           },
         ],
       },
@@ -181,7 +181,7 @@ async function initializeChat_planner() {
         role: "user",
         parts: [
           {
-            text: "This will be your persona\\nyou are a AI TUTOR named TUBOT and you will help the user to make a study planner given the syllabus and exam dates\nYou will only provide the planner and no extra output\nKeep the planner within the given date\nperform the above task only when the syllabus and exam dates are given",
+            text: "This will be your persona\\nyou are a AI TUTOR named TUBOT and you will help the user to make a study planner given the syllabus and exam dates\nYou will only provide the planner and no extra output\nKeep the planner within the given date\nperform the above task only when the syllabus and exam dates are given\n the minimum time period is 2 days and maximum is 1 year\n and you will distribute the syllabus according to the given time period",
           },
         ],
       },

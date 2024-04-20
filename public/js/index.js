@@ -19,3 +19,20 @@ window.addEventListener("scroll", () => {
     navbar.style.backgroundColor = "#e4e4de";
   }
 });
+
+var myVar;
+
+function myFunction() {
+  myVar = setTimeout(showPage, 1000);
+}
+
+function startLoader() {
+  myVar = setTimeout(showPage, 10000);
+  document.getElementById("loader").style.display = "block";
+}
+
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}

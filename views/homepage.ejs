@@ -9,13 +9,15 @@
   <link rel="stylesheet" href="css/ani.css" />
 </head>
 
-<body>
+<body onload="myFunction()" style="margin:0;">
+  <div id="loader"></div>
+
   <%- include('./navbar')%>
     <header>
       <h1>TUBOT</h1>
     </header>
 
-    <div class="container-fluid">
+    <div class="container-fluid" id="myDiv">
 
       <div class="container-fluid" style="height: 70vh">
         <div class="row p-5">

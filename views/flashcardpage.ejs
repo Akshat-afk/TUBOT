@@ -18,10 +18,12 @@
 		crossorigin="anonymous"></script>
 </head>
 
-<body>
+
+<body onload="myFunction()" style="margin:0;">
+	<div id="loader"></div>
 	<%- include('./navbar') %>
 
-		<div class="row">
+		<div class="row" id="myDiv">
 			<div class="container-fluid p-5 " style="height: 80vh">
 				<form action="/flashcardgen" method="POST">
 					<div class="form-group p-2">
@@ -74,9 +76,10 @@
 
 				</div>
 			</div>
+			<%- include('./footer') %>
+			
 		</div>
 
-		<%- include('./footer') %>
 
 			<script>
 				const revealButtons = document.querySelectorAll('.carousel-item .reveal-button');
